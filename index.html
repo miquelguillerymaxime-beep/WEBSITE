@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memtrace | Structural memory for your coding agent</title>
+<meta name="description" content="Memtrace gives your coding agent a living map of your codebase: what calls what, what breaks, and what already changed. Built for real codebases where your agent loses the thread.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav class="links">
+    <a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a>
+    <a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a>
+  </nav>
+  <div class="right"><a class="btn btn-primary" href="connect.html">Connect your repo</a></div>
+</div></header>
+
+<main class="wrap">
+  <section class="hero split hero-split" style="padding:80px 0 52px">
+    <div>
+      <div class="eyebrow">Structural memory for coding agents</div>
+      <h1>Your coding agent <em>forgets</em> your codebase.</h1>
+      <p class="lede">Every session it re-reads everything, burns tokens, and changes code that breaks things it can't see. <b>Memtrace gives it a living map of your repo</b>, so it stops guessing.</p>
+      <div class="forwho">Built for real codebases, 100k lines and up, where your agent loses the thread.</div>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a>
+        <a class="btn btn-ghost btn-lg" href="codemap.html">See how it works</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n c">97.3%</div><div class="l">right answer</div></div>
+        <div class="stat"><div class="n">13ms</div><div class="l">to resolve</div></div>
+        <div class="stat"><div class="n m">−80%</div><div class="l">repo re-reads</div></div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <div class="card-head"><span class="lg"></span>Code map · your repo, graphed<span class="meta">1,504 symbols · 13ms</span></div>
+      <div class="qbar"><span class="caret">›</span> what breaks if I change <span style="color:var(--cyan)">rotateToken()</span>?</div>
+      <div class="row"><span class="sym">rotateToken()</span><span class="file">auth/session.ts</span><span class="rel">called by 7</span><span class="v">v4128</span></div>
+      <div class="row"><span class="sym">useSession</span><span class="file">auth/hooks.ts</span><span class="rel">depends on 3</span><span class="v">v4129</span></div>
+      <div class="row"><span class="sym">Charge</span><span class="file">payments/charge.rs</span><span class="rel"><span class="tag risk">affects 12</span></span><span class="v">v4130</span></div>
+      <div class="card-foot">The real call graph, with history. <b>Not a guess from a search index.</b></div>
+    </div>
+  </section>
+
+  <section id="map">
+    <div class="smark"><span>01</span> · What your agent gets</div>
+    <h2>One graph that <em>knows your code.</em></h2>
+    <p class="sublede">Not three tools glued together. One graph that maps your code, remembers every version, and coordinates a fleet when you scale past one agent.</p>
+    <div class="jobs">
+      <div class="job lead reveal">
+        <div class="jn"><span class="b"></span>The map · what activates day one</div>
+        <h3>Code map</h3><div class="tag-r">Ask what breaks. Get the real answer.</div>
+        <ul><li>The actual call graph, 97.3% accurate</li><li>Answers in 13 milliseconds</li><li>Ingests 1,500 files in 1.5 seconds</li><li>Knows who changed this, and why</li></ul>
+        <a class="more" href="codemap.html">How the map works →</a>
+      </div>
+      <div class="job reveal">
+        <div class="jn"><span class="b"></span>Persistence</div>
+        <h3>MemDB</h3><div class="tag-r">Memory with time built in</div>
+        <ul><li>Rewind to any moment in ms</li><li>8.4× faster indexing, Rust</li><li>Runs on a laptop</li></ul>
+        <a class="more" href="memdb.html">How MemDB remembers →</a>
+      </div>
+      <div class="job reveal">
+        <div class="jn"><span class="b"></span>When you scale</div>
+        <h3>Fleet</h3><div class="tag-r">Agents that work as a team</div>
+        <ul><li>9 / 10 overlaps resolve alone</li><li>−94% merge conflicts</li><li>Claude, Cursor, Codex</li></ul>
+        <a class="more" href="fleet.html">How the Fleet works →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="numbers" id="numbers">
+  <div class="wrap" style="padding-top:56px;padding-bottom:8px">
+    <div class="smark"><span>02</span> · Measured on real teams, not a pitch deck</div>
+    <h2>The numbers, <em>rounded down.</em></h2>
+  </div>
+  <div class="wrap" style="padding-top:24px">
+    <div class="numgrid">
+      <div class="num"><div class="cat"><b>Memtrace</b> · accuracy</div><div class="big c">97.3%</div><p>The right answer when your agent asks what will break.</p></div>
+      <div class="num"><div class="cat"><b>Memtrace</b> · speed</div><div class="big">13ms</div><p>Faster than a page scroll. Check impact before every edit.</p></div>
+      <div class="num"><div class="cat"><b>Memtrace</b> · tokens</div><div class="big m">−80%</div><p>Your agent reads the graph, not the whole codebase.</p></div>
+      <div class="num"><div class="cat"><b>MemDB</b> · indexing</div><div class="big c">8.4×</div><p>Faster than the next-best graph database. We wrote our own.</p></div>
+    </div>
+    <div style="margin-top:24px"><a class="more" href="benchmark.html">See the full benchmark →</a></div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section id="fleet">
+    <div class="smark"><span>03</span> · When you scale</div>
+    <h2>One agent today. <em>A fleet tomorrow.</em></h2>
+    <p class="sublede">The map that helps one agent is the same map that lets many work together, sharing one graph instead of fighting each other.</p>
+    <div class="split">
+      <div class="curve reveal">
+        <div class="smark" style="margin-bottom:16px">Token savings vs vanilla multi-agent</div>
+        <div class="bars">
+          <div class="bar-row"><span class="lab">2 agents</span><div class="track"><div class="fill" style="--w:.2"></div></div><span class="pct">20%</span></div>
+          <div class="bar-row"><span class="lab">5 agents</span><div class="track"><div class="fill" style="--w:.42"></div></div><span class="pct">42%</span></div>
+          <div class="bar-row"><span class="lab">10 agents</span><div class="track"><div class="fill" style="--w:.63"></div></div><span class="pct">63%</span></div>
+        </div>
+        <div class="card-foot" style="padding:16px 0 0"><b>Pays for itself at 3 agents.</b> The graph becomes shared working memory, not 10 contexts re-reading the repo.</div>
+      </div>
+      <div class="feat">
+        <div class="f"><div class="ic">↔</div><div><h4>Engineers stop playing referee</h4><p>Two agents touch the same file, the fleet combines the work, both branches land clean.</p></div></div>
+        <div class="f"><div class="ic">◱</div><div><h4>Agents stop re-reading your repo</h4><p>50 agents, one shared map, about 80 tokens per lookup instead of 50 full scans.</p></div></div>
+        <div class="f"><div class="ic">∎</div><div><h4>Nothing gets lost</h4><p>Every attempt stays in history. The graph remembers what the chat forgot.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="smark" style="text-align:center">Get started</div>
+    <h2>Connect your repo. Your agent is reading it in <em>1.5 seconds.</em></h2>
+    <p class="sublede">It stops guessing and starts knowing what calls what, what breaks, and what already changed.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a>
+      <a class="btn btn-ghost btn-lg" href="pricing.html">See pricing</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap foot">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <span class="c">© 2026 Syncable</span>
+</div></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body>
+</html>

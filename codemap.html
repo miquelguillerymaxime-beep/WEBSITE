@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code map | Memtrace</title>
+<meta name="description" content="A living map of your codebase. Ask what breaks and get the real answer from the call graph, in milliseconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav class="links"><a href="codemap.html" class="active">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <div class="right"><a class="btn btn-primary" href="connect.html">Connect your repo</a></div>
+</div></header>
+
+<main class="wrap">
+  <section class="phero split hero-split">
+    <div>
+      <div class="eyebrow">Code map</div>
+      <h1>Ask what breaks. <em>Get the real answer.</em></h1>
+      <p class="lede">Every function, file and dependency in your repo, mapped and connected into one graph. Your agent queries the <b>actual call graph</b>, not a fuzzy match from a search index, and gets the blast radius of any change in milliseconds.</p>
+      <div class="cta-row"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="benchmark.html">See the benchmark</a></div>
+    </div>
+    <div class="card reveal">
+      <div class="card-head"><span class="lg"></span>get_impact · blast radius<span class="meta">1,504 symbols · 13ms</span></div>
+      <div class="qbar"><span class="caret">›</span> what breaks if I change <span style="color:var(--cyan)">rotateToken()</span>?</div>
+      <div class="row"><span class="sym">rotateToken()</span><span class="file">auth/session.ts</span><span class="rel">called by 7</span><span class="v">v4128</span></div>
+      <div class="row"><span class="sym">useSession</span><span class="file">auth/hooks.ts</span><span class="rel">depends on 3</span><span class="v">v4129</span></div>
+      <div class="row"><span class="sym">Charge</span><span class="file">payments/charge.rs</span><span class="rel"><span class="tag risk">affects 12</span></span><span class="v">v4130</span></div>
+      <div class="row"><span class="sym">verifyJwt</span><span class="file">auth/jwt.ts</span><span class="rel"><span class="tag safe">safe</span></span><span class="v">v4131</span></div>
+      <div class="card-foot">Every hit carries its edge path. <b>Provenance, not a guess.</b></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="smark"><span>How</span> · it works</div>
+    <h2>Parse, graph, query.</h2>
+    <p class="sublede">No model runs while your code is indexed. The structure comes straight from the syntax tree, so the map is always fresh and free to update.</p>
+    <div class="steps">
+      <div class="step reveal"><div class="k">01</div><h4>Parse the tree</h4><p>Tree-sitter reads every file into an abstract syntax tree. Zero LLM calls, so it stays fresh on every edit.</p></div>
+      <div class="step reveal"><div class="k">02</div><h4>Build the graph</h4><p>Symbols become nodes, calls and imports and type references become typed edges. 1,500 files in 1.5 seconds.</p></div>
+      <div class="step reveal"><div class="k">03</div><h4>Answer the query</h4><p>Your agent asks in plain terms. The graph returns the real answer with its edge path, in 13 milliseconds.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="smark"><span>Queries</span> · what your agent can ask</div>
+    <h2>The questions a search index <em>can't</em> answer.</h2>
+    <div class="jobs" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="job reveal"><div class="jn"><span class="b"></span>find_symbol</div><h3>Where is X?</h3><div class="tag-r">Locate the real definition</div><ul><li>Exact symbol, not a text match</li><li>Across the whole repo</li></ul></div>
+      <div class="job reveal"><div class="jn"><span class="b"></span>get_impact</div><h3>What breaks?</h3><div class="tag-r">The blast radius of a change</div><ul><li>Everything downstream</li><li>Ranked by real dependency</li></ul></div>
+      <div class="job reveal"><div class="jn"><span class="b"></span>get_symbol_context</div><h3>Why is this here?</h3><div class="tag-r">Callers, callees, history</div><ul><li>Who changed it and when</li><li>The context around the code</li></ul></div>
+    </div>
+  </section>
+</main>
+
+<section class="numbers">
+  <div class="wrap" style="padding-top:56px;padding-bottom:8px"><div class="smark"><span>Measured</span></div><h2>Fast enough to run <em>before every edit.</em></h2></div>
+  <div class="wrap" style="padding-top:24px"><div class="numgrid">
+    <div class="num"><div class="cat">accuracy</div><div class="big c">97.3%</div><p>The right answer when your agent asks what will break.</p></div>
+    <div class="num"><div class="cat">latency</div><div class="big">13ms</div><p>Per query. Your agent checks impact without slowing down.</p></div>
+    <div class="num"><div class="cat">ingest</div><div class="big c">1.5s</div><p>To map 1,500 files into the graph, from cold.</p></div>
+    <div class="num"><div class="cat">tokens</div><div class="big m">−80%</div><p>Fewer repo re-reads. It reads the graph, not the files.</p></div>
+  </div></div>
+</section>
+
+<main class="wrap"><section class="close">
+  <div class="smark" style="text-align:center">Get started</div>
+  <h2>Give your agent the map. <em>Watch it stop guessing.</em></h2>
+  <p class="sublede">Works with Claude, Cursor and Codex. Point it at your repo and it is reading in 1.5 seconds.</p>
+  <div class="cta-row" style="justify-content:center"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="pricing.html">See pricing</a></div>
+</section></main>
+
+<footer><div class="wrap foot">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <span class="c">© 2026 Syncable</span>
+</div></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body>
+</html>

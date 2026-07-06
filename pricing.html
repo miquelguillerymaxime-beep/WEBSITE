@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing | Memtrace</title>
+<meta name="description" content="Plans that scale with your agents, not just your seats. Start free, keep your Community license forever.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav class="links"><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html" class="active">Pricing</a></nav>
+  <div class="right"><a class="btn btn-primary" href="connect.html">Connect your repo</a></div>
+</div></header>
+
+<main class="wrap">
+  <section class="phero" style="text-align:center">
+    <div class="eyebrow" style="justify-content:center">Pricing</div>
+    <h1 style="max-width:15em;margin-left:auto;margin-right:auto">Scales with your <em>agents</em>, not your seats.</h1>
+    <p class="lede" style="max-width:38em;margin-left:auto;margin-right:auto">Start free and keep your Community license forever. Move up when you need more query headroom, a shared team graph, or your own infrastructure.</p>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tn">Community</div>
+        <div class="price">Free</div>
+        <div class="desc">For a solo dev putting one agent on one repo.</div>
+        <ul><li>One repository</li><li>Code map and MemDB</li><li>Blast-radius queries</li><li>License never expires</li><li>Community support</li></ul>
+        <a class="btn btn-ghost" href="connect.html">Start free</a>
+      </div>
+      <div class="tier reveal">
+        <div class="tn">Pro</div>
+        <div class="price">$9<small> / month</small></div>
+        <div class="desc">More headroom for a serious daily driver.</div>
+        <ul><li>Everything in Community</li><li>Higher query limits</li><li>Priority indexing</li><li>Private by default</li><li>Email support</li></ul>
+        <a class="btn btn-ghost" href="connect.html">Choose Pro</a>
+      </div>
+      <div class="tier featured reveal">
+        <div class="badge">Most teams</div>
+        <div class="tn">Team</div>
+        <div class="price">$29<small> / seat / mo</small></div>
+        <div class="desc">One shared graph, and the Fleet when you scale.</div>
+        <ul><li>Everything in Pro</li><li>Shared team graph</li><li>Fleet coordination</li><li>Cloud-hosted</li><li>Human support</li></ul>
+        <a class="btn btn-primary" href="connect.html">Start a team</a>
+      </div>
+      <div class="tier reveal">
+        <div class="tn">Enterprise</div>
+        <div class="price">Talk to us</div>
+        <div class="desc">Your infrastructure, your rules.</div>
+        <ul><li>Self-hosted, code stays in</li><li>SSO and audit</li><li>SLA and onboarding</li><li>Dedicated support</li><li>Design-partner program</li></ul>
+        <a class="btn btn-ghost" href="connect.html">Contact sales</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="split">
+      <div class="prose reveal">
+        <div class="smark"><span>Why query-based</span></div>
+        <h2 style="font-size:28px">You pay for what the agents use.</h2>
+        <p>Seats measure people. Agents don't map to people. Pricing that scales on queries means a solo dev with one heavy agent and a team with a fleet each pay for the work they actually do.</p>
+        <p><b>Your Community license never expires.</b> We only ever pause paid licenses for non-payment, never the free tier. Start free, stay free as long as you like.</p>
+      </div>
+      <div class="prose reveal">
+        <div class="smark"><span>Self-hosting</span></div>
+        <h2 style="font-size:28px">Code that never leaves.</h2>
+        <p>Memtrace runs deterministically and locally. No model reads your source to build the graph, so on Enterprise the whole stack can run inside your own environment.</p>
+        <p><b>Built for regulated and complex codebases.</b> Sovereignty is not an add-on, it is how the engine is designed. Talk to us about a self-hosted deployment.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="close">
+  <div class="wrap" style="text-align:center">
+    <div class="smark" style="text-align:center">Get started</div>
+    <h2>Start free. <em>Move up when it earns it.</em></h2>
+    <p class="sublede" style="margin:0 auto 28px">Connect your repo and your agent is reading it in 1.5 seconds.</p>
+    <div class="cta-row" style="justify-content:center"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="index.html">Back to home</a></div>
+  </div>
+</section>
+
+<footer><div class="wrap foot">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <span class="c">© 2026 Syncable</span>
+</div></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark | Memtrace</title>
+<meta name="description" content="Measured on real workloads and rounded down. We show where we tie, not just where we win.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav class="links"><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html" class="active">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <div class="right"><a class="btn btn-primary" href="connect.html">Connect your repo</a></div>
+</div></header>
+
+<main class="wrap">
+  <section class="phero">
+    <div class="eyebrow">Benchmark</div>
+    <h1 style="max-width:14em">Measured on real workloads. <em>Rounded down.</em></h1>
+    <p class="lede" style="max-width:40em">Every number here comes from production runs, not a pitch deck. We report the same numbers to ourselves that we show you, and we show where a tuned baseline ties us, not just where we win.</p>
+  </section>
+</main>
+
+<section class="numbers">
+  <div class="wrap" style="padding-top:52px;padding-bottom:8px"><div class="smark"><span>Headline</span></div><h2>The four that matter.</h2></div>
+  <div class="wrap" style="padding-top:24px"><div class="numgrid">
+    <div class="num"><div class="cat"><b>Code map</b> · accuracy</div><div class="big c">97.3%</div><p>The right answer to "what will this break?"</p></div>
+    <div class="num"><div class="cat"><b>Code map</b> · latency</div><div class="big">13ms</div><p>Per query. Runs before every edit.</p></div>
+    <div class="num"><div class="cat"><b>MemDB</b> · indexing</div><div class="big c">8.4×</div><p>Faster than the next-best graph database.</p></div>
+    <div class="num"><div class="cat"><b>MemDB</b> · traversal</div><div class="big c">12.1×</div><p>Faster graph traversal, same workload.</p></div>
+  </div></div>
+</section>
+
+<main class="wrap">
+  <section>
+    <div class="smark"><span>Retrieval</span> · 4,475 real decisions, 400 paraphrased queries</div>
+    <h2>Training-free fusion beats <em>either half.</em></h2>
+    <p class="sublede">Queries are paraphrased into synonyms, so neither keyword nor embedding gets a free lexical hit. Vector-only underperforms on identifier-heavy code; fusing keyword and vector wins without any training.</p>
+    <table class="btable reveal">
+      <thead><tr><th>System</th><th>R@1</th><th>R@10</th><th>MRR</th></tr></thead>
+      <tbody>
+        <tr><td>BM25 keyword</td><td>0.704</td><td>0.915</td><td>0.776</td></tr>
+        <tr><td>Vector (bge-small)</td><td>0.642</td><td>0.875</td><td style="color:var(--dim)">n/a</td></tr>
+        <tr><td>RRF fusion</td><td class="win">0.714</td><td class="win">0.940</td><td class="win">0.791</td></tr>
+        <tr><td>RRF + cross-encoder</td><td>~0.70</td><td class="win">0.962</td><td style="color:var(--dim)">n/a</td></tr>
+      </tbody>
+    </table>
+    <p style="color:var(--dim);font-family:var(--mono);font-size:12px;margin-top:14px">Vector alone underperforms keyword on code. Fusion beats both. A cross-encoder lifts list recall but leaves R@1 near 0.70.</p>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="note reveal">
+      <b>Honestly stated</b>
+      On plain retrieval, just find the topic, we are not a clear winner: a tuned BM25 ties us on recall. Our edge is picking the right node with its history and dependency path, not raw neighbor finding. We make no claim to beat conversational-memory systems, they answer a different question. Where we separate is the structural answer: what calls what, what breaks, and what was true when.
+    </div>
+  </section>
+</main>
+
+<section class="close">
+  <div class="wrap" style="text-align:center">
+    <div class="smark" style="text-align:center">Get started</div>
+    <h2>See it on <em>your</em> codebase.</h2>
+    <p class="sublede" style="margin:0 auto 28px">The numbers are ours. The one that matters is yours.</p>
+    <div class="cta-row" style="justify-content:center"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="pricing.html">See pricing</a></div>
+  </div>
+</section>
+
+<footer><div class="wrap foot">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <span class="c">© 2026 Syncable</span>
+</div></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body>
+</html>

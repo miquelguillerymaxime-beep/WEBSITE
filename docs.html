@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs | Memtrace</title>
+<meta name="description" content="Get your coding agent reading your repo in a few minutes. Quickstart, core concepts, and the MCP integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.docwrap{display:grid;grid-template-columns:230px 1fr;gap:48px;padding:48px 0 80px;align-items:start}
+.docnav{position:sticky;top:88px;font-family:var(--mono);font-size:13px}
+.docnav .g{color:var(--dim);text-transform:uppercase;letter-spacing:.08em;font-size:11px;margin:20px 0 10px}
+.docnav a{display:block;color:var(--muted);padding:5px 0;transition:color .2s}
+.docnav a:hover{color:var(--cyan)}
+.doc h1{font-size:clamp(30px,4vw,42px);margin-bottom:14px}
+.doc h2{font-size:26px;margin:44px 0 12px;scroll-margin-top:88px}
+.doc h3{font-size:17px;margin:24px 0 8px}
+.doc p{color:var(--muted);font-size:15.5px;margin-bottom:14px;max-width:44em}
+.doc p b{color:var(--text)}
+.doc ul{color:var(--muted);font-size:15px;margin:0 0 16px 20px}
+.doc li{margin-bottom:6px}
+.code{background:#0c1119;border:1px solid var(--border);border-radius:11px;padding:15px 18px;font-family:var(--mono);font-size:13px;color:var(--text);margin:6px 0 18px;overflow-x:auto;line-height:1.7}
+.code .c{color:var(--dim)}
+.code .k{color:var(--cyan)}
+.doc .lead-para{font-size:18px;color:var(--muted);margin-bottom:8px}
+.pillrow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 20px}
+.pillrow span{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--border2);border-radius:999px;padding:5px 11px}
+@media(max-width:820px){.docwrap{grid-template-columns:1fr}.docnav{position:static}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav class="links"><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html" class="active">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <div class="right"><a class="btn btn-primary" href="connect.html">Connect your repo</a></div>
+</div></header>
+
+<div class="wrap docwrap">
+  <aside class="docnav">
+    <div class="g">Start</div>
+    <a href="#quickstart">Quickstart</a>
+    <a href="#first-query">Your first query</a>
+    <div class="g">Concepts</div>
+    <a href="#codemap">Code map</a>
+    <a href="#memdb">MemDB</a>
+    <a href="#fleet">Fleet</a>
+    <div class="g">Integrate</div>
+    <a href="#mcp">MCP setup</a>
+    <a href="#agents">Supported agents</a>
+  </aside>
+
+  <div class="doc">
+    <div class="eyebrow">Docs</div>
+    <h1>Get your agent reading your repo.</h1>
+    <p class="lead-para">Three commands and a first query. No model runs while your code is indexed, so it stays fresh on every edit.</p>
+
+    <h2 id="quickstart">Quickstart</h2>
+    <p><b>1. Install the CLI.</b> One command, no dependencies to configure.</p>
+    <div class="code"><span class="c"># install</span><br><span class="k">curl</span> -fsSL memtrace.io/install.sh | sh</div>
+    <p><b>2. Connect your repo.</b> Sign in with GitHub or Google, then point Memtrace at a repository.</p>
+    <div class="code"><span class="k">memtrace</span> connect ./my-repo</div>
+    <p><b>3. Index.</b> The graph builds in about 1.5 seconds per 1,500 files, locally.</p>
+    <div class="code"><span class="k">memtrace</span> index<br><span class="c"># 1,504 symbols · 13.4ms · ready</span></div>
+
+    <h2 id="first-query">Your first query</h2>
+    <p>Ask the question a search index cannot answer: the blast radius of a change.</p>
+    <div class="code"><span class="k">memtrace</span> impact rotateToken<br><span class="c"># called by 7 · affects 12 · 1 risk in payments/charge.rs</span></div>
+    <p>This is the moment most people understand what Memtrace does. Try it on a function you actually plan to change.</p>
+
+    <h2 id="codemap">Code map</h2>
+    <p>Every function, file and dependency, mapped into one graph. Your agent queries the real call graph, not a text match. See the <a href="codemap.html" style="color:var(--cyan)">Code map page</a> for the full picture.</p>
+    <ul><li><b>find_symbol</b>, locate the real definition</li><li><b>get_impact</b>, the blast radius of a change</li><li><b>get_symbol_context</b>, callers, callees and history</li></ul>
+
+    <h2 id="memdb">MemDB</h2>
+    <p>Memory with time built in. Every record knows when it was true, so you can ask a query as-of any past moment and get the value that held then. Written in Rust, runs on a laptop. More on the <a href="memdb.html" style="color:var(--cyan)">MemDB page</a>.</p>
+
+    <h2 id="fleet">Fleet</h2>
+    <p>When you run more than one agent, they share the graph instead of fighting each other. Agents announce intent before editing, and overlaps auto-resolve. More on the <a href="fleet.html" style="color:var(--cyan)">Fleet page</a>.</p>
+
+    <h2 id="mcp">MCP setup</h2>
+    <p>Memtrace speaks the Model Context Protocol, so your agent reads the graph as a native tool. Add the server once.</p>
+    <div class="code"><span class="k">claude</span> mcp add memtrace -- memtrace serve</div>
+    <p>Your agent now has <b>find_symbol</b>, <b>get_impact</b> and the rest available on every turn.</p>
+
+    <h2 id="agents">Supported agents</h2>
+    <p>Memtrace works with the agents you already use.</p>
+    <div class="pillrow"><span>Claude Code</span><span>Cursor</span><span>Codex</span><span>Devin</span><span>Any MCP client</span></div>
+    <p style="margin-top:24px"><a class="btn btn-primary" href="connect.html">Connect your repo</a></p>
+  </div>
+</div>
+
+<footer><div class="wrap foot">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <span class="c">© 2026 Syncable</span>
+</div></footer>
+</body>
+</html>

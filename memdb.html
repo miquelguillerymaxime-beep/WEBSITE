@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MemDB | Memtrace</title>
+<meta name="description" content="The database where time is a first-class citizen. Every record knows when it was true, so any past moment replays in milliseconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav class="links"><a href="codemap.html">Code map</a><a href="memdb.html" class="active">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <div class="right"><a class="btn btn-primary" href="connect.html">Connect your repo</a></div>
+</div></header>
+
+<main class="wrap">
+  <section class="phero split hero-split">
+    <div>
+      <div class="eyebrow">MemDB</div>
+      <h1>Memory with <em>time built in.</em></h1>
+      <p class="lede">The first database where time is a first-class citizen. <b>Every record knows when it was true</b>, so Memtrace can rewind to any past moment in milliseconds, while every other graph database makes you rebuild indexes. Written in Rust, runs on a laptop.</p>
+      <div class="cta-row"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="benchmark.html">See the benchmark</a></div>
+    </div>
+    <div class="card reveal">
+      <div class="card-head"><span class="lg"></span>bi-temporal records<span class="meta">0.155ms commit</span></div>
+      <div class="row h" style="grid-template-columns:.7fr 1.6fr 1fr 1fr"><span>record</span><span>body</span><span>valid from</span><span>valid to</span></div>
+      <div class="row" style="grid-template-columns:.7fr 1.6fr 1fr 1fr"><span class="sym">r#0a3c</span><span class="rel">rotateToken → verifyJwt</span><span class="file">Mon 14:02</span><span style="color:var(--green)">live</span></div>
+      <div class="row" style="grid-template-columns:.7fr 1.6fr 1fr 1fr"><span class="sym">r#0a3d</span><span class="rel">useSession → rotateToken</span><span class="file">Mon 14:03</span><span style="color:var(--green)">live</span></div>
+      <div class="row" style="grid-template-columns:.7fr 1.6fr 1fr 1fr"><span class="sym">r#08f1</span><span class="rel">rotateToken → oldJwt</span><span class="file">Fri 09:21</span><span style="color:var(--magenta)">Mon 14:02</span></div>
+      <div class="card-foot">Ask as-of Friday and you get <b>oldJwt</b>, the value that held then, not today's head.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="smark"><span>Why</span> · time is the point</div>
+    <h2>A record that <em>remembers when it was true.</em></h2>
+    <div class="split">
+      <div class="prose reveal">
+        <p><b>Two clocks, not one.</b> Every fact carries a decision time, when it was recorded, and a valid time, the interval over which it actually held. Most databases keep only the latest value. MemDB keeps the whole timeline.</p>
+        <p><b>Ask as-of any moment.</b> "What did rotateToken call in March?" returns the value that was valid in March, even though it was superseded in May. The current head does not overwrite the past, it supersedes it.</p>
+        <p><b>Nothing is ever deleted.</b> Superseded facts are demoted, not destroyed. Perfect recall for audit and provenance stays available while the active set stays small and fast.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-head"><span class="lg"></span>as_of(T) query</div>
+        <div class="qbar"><span class="caret">›</span> rotateToken calls, <span style="color:var(--magenta)">as-of Friday 10:00</span></div>
+        <div class="row" style="grid-template-columns:1.4fr 1fr auto"><span class="sym">rotateToken → oldJwt</span><span class="file">valid then</span><span class="v">#4117</span></div>
+        <div class="qbar" style="border-top:1px solid var(--border)"><span class="caret">›</span> rotateToken calls, <span style="color:var(--green)">as-of now</span></div>
+        <div class="row" style="grid-template-columns:1.4fr 1fr auto"><span class="sym">rotateToken → verifyJwt</span><span class="file">current head</span><span class="v">#4128</span></div>
+        <div class="card-foot">Same query, two moments, <b>two correct answers.</b></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="numbers">
+  <div class="wrap" style="padding-top:56px;padding-bottom:8px"><div class="smark"><span>Measured</span> · vs the next-best graph database</div><h2>We wrote our own, <em>from the storage layer up.</em></h2></div>
+  <div class="wrap" style="padding-top:24px"><div class="numgrid">
+    <div class="num"><div class="cat">indexing</div><div class="big c">8.4×</div><p>Faster than the next-best graph and vector database.</p></div>
+    <div class="num"><div class="cat">traversal</div><div class="big c">12.1×</div><p>Faster graph traversal on the same workload.</p></div>
+    <div class="num"><div class="cat">footprint</div><div class="big">16 MB</div><p>At 100,000 records. It fits on a laptop.</p></div>
+    <div class="num"><div class="cat">time-travel</div><div class="big m">∞</div><p>Replay any past moment in one query. Others can't.</p></div>
+  </div></div>
+</section>
+
+<main class="wrap"><section class="close">
+  <div class="smark" style="text-align:center">Get started</div>
+  <h2>A memory that keeps <em>every version.</em></h2>
+  <p class="sublede">Point Memtrace at your repo and every change is remembered with the time it was true.</p>
+  <div class="cta-row" style="justify-content:center"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="pricing.html">See pricing</a></div>
+</section></main>
+
+<footer><div class="wrap foot">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <span class="c">© 2026 Syncable</span>
+</div></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body>
+</html>

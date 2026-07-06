@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fleet | Memtrace</title>
+<meta name="description" content="Run many coding agents on one graph. They announce intent, Memtrace resolves overlaps, and branches land clean. Nine of ten overlaps resolve without a human.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav class="links"><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html" class="active">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <div class="right"><a class="btn btn-primary" href="connect.html">Connect your repo</a></div>
+</div></header>
+
+<main class="wrap">
+  <section class="phero split hero-split">
+    <div>
+      <div class="eyebrow">Fleet</div>
+      <h1>Many agents, <em>one graph.</em></h1>
+      <p class="lede">Run more than one agent and they stop fighting each other. Before an agent edits, it announces intent. <b>Memtrace spots the overlap and picks the safe path</b>: auto-merge, wait, or flag a human. Nine of ten overlaps resolve on their own.</p>
+      <div class="cta-row"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="benchmark.html">See the benchmark</a></div>
+    </div>
+    <div class="card reveal">
+      <div class="card-head"><span class="lg"></span>Fleet · 4 intents live</div>
+      <div class="row" style="grid-template-columns:auto 1.5fr auto"><span class="sym">agent α</span><span class="rel">auth/session.ts · rotate tokens</span><span><span class="tag safe">no overlap</span></span></div>
+      <div class="row" style="grid-template-columns:auto 1.5fr auto"><span class="sym">agent β</span><span class="rel">auth/session.ts · extract hook</span><span><span class="tag" style="color:var(--amber);border-color:rgba(255,184,77,.4)">auto-merge</span></span></div>
+      <div class="row" style="grid-template-columns:auto 1.5fr auto"><span class="sym">agent γ</span><span class="rel">payments/charge.rs · reading</span><span class="v">80 tokens</span></div>
+      <div class="row" style="grid-template-columns:auto 1.5fr auto"><span class="sym">agent δ</span><span class="rel">cart/totals.spec.ts · testing</span><span><span class="tag safe">independent</span></span></div>
+      <div class="card-foot">α and β touch the same file. <b>The fleet is handling it.</b> No engineer pinged.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="smark"><span>How</span> · agents work as a team</div>
+    <h2>Announce, detect, resolve.</h2>
+    <div class="steps">
+      <div class="step reveal"><div class="k">01</div><h4>Announce intent</h4><p>Before it changes anything, an agent tells the fleet what it is about to do and which files it will touch.</p></div>
+      <div class="step reveal"><div class="k">02</div><h4>Detect the overlap</h4><p>Memtrace checks the code map for collisions with whatever every other agent is doing, in real time.</p></div>
+      <div class="step reveal"><div class="k">03</div><h4>Pick the safe path</h4><p>Auto-merge when it is safe, wait when it is not, flag a human only when a real decision has to be made.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="smark"><span>Why</span> · it compounds</div>
+    <h2>Every new agent makes the last one <em>cheaper.</em></h2>
+    <p class="sublede">Traditional fleets fight each other, so cost grows with every agent. Memtrace fleets share one graph, so the savings curve bends the other way.</p>
+    <div class="split">
+      <div class="curve reveal">
+        <div class="smark" style="margin-bottom:16px">Token savings vs vanilla multi-agent</div>
+        <div class="bars">
+          <div class="bar-row"><span class="lab">2 agents</span><div class="track"><div class="fill" style="--w:.2"></div></div><span class="pct">20%</span></div>
+          <div class="bar-row"><span class="lab">5 agents</span><div class="track"><div class="fill" style="--w:.42"></div></div><span class="pct">42%</span></div>
+          <div class="bar-row"><span class="lab">10 agents</span><div class="track"><div class="fill" style="--w:.63"></div></div><span class="pct">63%</span></div>
+        </div>
+        <div class="card-foot" style="padding:16px 0 0"><b>Pays for itself at 3 agents.</b> One shared working memory instead of 10 contexts re-reading the repo.</div>
+      </div>
+      <div class="feat">
+        <div class="f"><div class="ic">↔</div><div><h4>Engineers stop playing referee</h4><p>Two agents touch the same file, the fleet combines the work, both branches land clean. No merge hell, no Slack thread.</p></div></div>
+        <div class="f"><div class="ic">◱</div><div><h4>Agents stop re-reading your repo</h4><p>50 agents share one map, about 80 tokens per coordination read instead of 50 full codebase scans.</p></div></div>
+        <div class="f"><div class="ic">∎</div><div><h4>Nothing gets lost</h4><p>Every attempt, even the ones agents gave up on, stays in history. The graph remembers what the chat forgot.</p></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="numbers">
+  <div class="wrap" style="padding-top:56px;padding-bottom:8px"><div class="smark"><span>Measured</span> · across a 1,000-task fleet vs a siloed baseline</div><h2>Conflicts resolve <em>before</em> they become merge hell.</h2></div>
+  <div class="wrap" style="padding-top:24px"><div class="numgrid">
+    <div class="num"><div class="cat">merge conflicts</div><div class="big m">−94%</div><p>Nine of ten overlapping intents auto-resolve.</p></div>
+    <div class="num"><div class="cat">productivity</div><div class="big c">+40%</div><p>Measured against an identical siloed baseline.</p></div>
+    <div class="num"><div class="cat">coordination read</div><div class="big">80</div><p>Tokens to resolve an overlap. Not a full re-scan.</p></div>
+    <div class="num"><div class="cat">works with</div><div class="big c">4+</div><p>Claude, GPT, Cursor, Devin, on one graph.</p></div>
+  </div></div>
+</section>
+
+<main class="wrap"><section class="close">
+  <div class="smark" style="text-align:center">Get started</div>
+  <h2>Start with one agent. <em>Add the rest when you're ready.</em></h2>
+  <p class="sublede">The same graph that helps one agent lets a whole fleet work as a team.</p>
+  <div class="cta-row" style="justify-content:center"><a class="btn btn-primary btn-lg" href="connect.html">Connect your repo</a><a class="btn btn-ghost btn-lg" href="pricing.html">See pricing</a></div>
+</section></main>
+
+<footer><div class="wrap foot">
+  <a class="logo" href="index.html"><span class="dot"></span>Memtrace</a>
+  <nav><a href="codemap.html">Code map</a><a href="memdb.html">MemDB</a><a href="fleet.html">Fleet</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></nav>
+  <span class="c">© 2026 Syncable</span>
+</div></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body>
+</html>
